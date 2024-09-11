@@ -1,6 +1,7 @@
 namespace ConsoleGames;
 
-public class FemIRad {
+public class FemIRad
+{
     private static readonly char[] _field = [
         '1', '2', '3', '4', '5',
         '6', '7', '8', '9', '0',
@@ -24,14 +25,18 @@ public class FemIRad {
         { _markers[1], [] }
     };
 
-    public void Play() {
+    public void Play()
+    {
         GetPlayerNames();
-        while (true) {
+        while (true)
+        {
             Array.Reverse(_playerNames);
             Array.Reverse(_markers);
             Array.Reverse(_scores);
-            while (true) {
-                if (Winner(_turn % 2 != 0 ? _markers[0] : _markers[1])) {
+            while (true)
+            {
+                if (Winner(_turn % 2 != 0 ? _markers[0] : _markers[1]))
+                {
                     SetPoints();
                     Console.WriteLine($"We have a winner! {_playerNames[(_turn % 2 != 0 ? 0 : 1)]}");
                     break;
@@ -51,17 +56,21 @@ public class FemIRad {
         }
     }
 
-    private void PrintScores() {
+    private void PrintScores()
+    {
         int index1 = Array.IndexOf(_markers, 'X');
         int index2 = Array.IndexOf(_markers, 'O');
         Console.WriteLine($"{_playerNames[index1]}: {_scores[index1]}. {_playerNames[index2]}: {_scores[index2]}.");
     }
 
-    private void GetPlayerNames() {
-        for (var i = 0; i < 2; i++) {
+    private void GetPlayerNames()
+    {
+        for (var i = 0; i < 2; i++)
+        {
             Console.Write($"Spelare {i + 1} namn -> ");
             string? input = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(input)) {
+            if (string.IsNullOrWhiteSpace(input))
+            {
                 i--;
                 Console.Clear();
                 Console.WriteLine("Felaktig input, försök igen.");
@@ -82,15 +91,18 @@ public class FemIRad {
     private void SetPoints() =>
         _scores[(_turn % 2 != 0 ? 0 : 1)]++;
 
-    private char GetMark() {
+    private char GetMark()
+    {
         char mark;
         Console.Clear();
-        while (true) {
+        while (true)
+        {
             PrintScores();
             PrintField();
             Console.Write($"{(_turn % 2 == 0 ? _playerNames[0] : _playerNames[1])} -> ");
             mark = Console.ReadKey(true).KeyChar;
-            if (!_playField.Contains(mark)) {
+            if (!_playField.Contains(mark))
+            {
                 Console.Clear();
                 Console.WriteLine("Invalid input");
             }
@@ -101,7 +113,8 @@ public class FemIRad {
         return mark;
     }
 
-    private bool Winner(char mark) {
+    private bool Winner(char mark)
+    {
         var win = false;
         for (var i = 0; i < _playField.Length; i += 5)
             if (_playField[i].Equals(mark))
@@ -128,7 +141,8 @@ public class FemIRad {
         return win;
     }
 
-    private void Turn(char fieldMark) {
+    private void Turn(char fieldMark)
+    {
         char mark = (_turn % 2 == 0 ? _markers[0] : _markers[1]);
         int indexOfFieldMark = Array.IndexOf(_field, fieldMark);
         ReturnFieldMark(mark);
@@ -136,7 +150,8 @@ public class FemIRad {
         _playField[indexOfFieldMark] = mark;
     }
 
-    private void ReturnFieldMark(char mark) {
+    private void ReturnFieldMark(char mark)
+    {
         if (_played[mark].Count < Lives) return;
         char playedMark = _played[mark][0];
         int index = Array.IndexOf(_field, playedMark);
@@ -144,17 +159,22 @@ public class FemIRad {
         _played[mark].RemoveAt(0);
     }
 
-    private void PrintField() {
-        for (var i = 0; i < _playField.Length; i += 5) {
-            for (var j = 0; j < 5; j++) {
+    private void PrintField()
+    {
+        for (var i = 0; i < _playField.Length; i += 5)
+        {
+            for (var j = 0; j < 5; j++)
+            {
                 char mark = _playField[i + j];
                 Console.ForegroundColor = GetColor();
                 Console.Write("[");
-                if (mark.Equals('X')) {
+                if (mark.Equals('X'))
+                {
                     Console.ForegroundColor = GetColor("Red");
                     Console.Write(mark);
                 }
-                else if (mark.Equals('O')) {
+                else if (mark.Equals('O'))
+                {
                     Console.ForegroundColor = GetColor("Blue");
                     Console.Write(mark);
                 }

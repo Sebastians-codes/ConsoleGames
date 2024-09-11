@@ -5,14 +5,16 @@ FemIRad femIRad = new();
 
 int choice = GetChoice();
 Console.Clear();
-if (choice == 1) {
+if (choice == 1)
+{
     fyraIRad.Play();
     return;
 }
 femIRad.Play();
 return;
 
-int GetChoice() {
+int GetChoice()
+{
     Console.WriteLine("Välj mellan vanlig fyra i rad och 5 i rad med special regler.");
     Console.WriteLine("1 - Fyra i rad.\n2 - Fem i rad.");
     Console.Write("-> ");
