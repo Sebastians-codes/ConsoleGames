@@ -14,12 +14,7 @@ public class FyraIRad
         GetPlayerNames();
         do
         {
-            if (_scores[0] + _scores[1] + _scores[2] % 2 != 0 && _scores[0] + _scores[1] + _scores[2] > 0)
-            {
-                Array.Reverse(_playerNames);
-                Array.Reverse(_markers);
-            }
-            else if (_scores[0] + _scores[1] + _scores[2] % 2 == 0 && _scores[0] + _scores[1] + _scores[2] > 0)
+            if (_scores[0] + _scores[1] + _scores[2] > 0)
             {
                 Array.Reverse(_playerNames);
                 Array.Reverse(_markers);
